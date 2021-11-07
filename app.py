@@ -2,8 +2,8 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 
-from display.graphs import display_choropleth
-from utils.utils import get_dataframe
+from display.graphs import display_choropleth, display_historygram
+from utils.utils import get_dataframe, generate_table
 from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
@@ -23,11 +23,13 @@ def display_click_data(custom_data):
             html.P("time_stopped: {}".format(df_result['time_stopped'].tolist()[0])),
             html.P("vehicle_id: {}".format(df_result['vehicle_id'].tolist()[0]))
         ]
+
     return [
         html.P("perc: {}".format("")),
         html.P("time_stopped: {}".format("")),
         html.P("vehicle_id: {}".format(""))
     ]
+
 
 app.layout = html.Div([
     html.H2("Data Mobility:"),
@@ -36,11 +38,11 @@ app.layout = html.Div([
         figure=display_choropleth(df, geojson)
     ),
     html.Div(id="click_result"),
-    # generate_table(df),
-    # dcc.Graph(
-    #     id='histogram-mobility',
-    #     figure=display_historygram(df)
-    # )
+    generate_table(df),
+    dcc.Graph(
+        id='histogram-mobility',
+        figure=display_historygram(df)
+    )
 ])
 
 if __name__ == '__main__':

@@ -12,12 +12,13 @@ def display_choropleth(df, geojson):
     return fig
 
 
-#
-# def display_historygram(df):
-#     df_different_count = pd.DataFrame(df["count"].unique(), columns=["count"])
-#     df_clear = df[["polygon", "count"]]
-#     df_different_count["grids"] = None
-#     for index, count in df_different_count.iterrows():
-#         df_mask = df_clear["count"] == count.values[0]
-#         df_different_count.loc[index, "grids"] = len(df_clear[df_mask])
-#     return px.bar(df_different_count, y="count", x="grids")
+def display_historygram(df):
+    df_different_count = pd.DataFrame(df["count"].unique(), columns=["count"])
+    df_clear = df[["polygon", "count"]]
+    df_different_count["grids"] = None
+
+    for index, count in df_different_count.iterrows():
+        df_mask = df_clear["count"] == count.values[0]
+        df_different_count.loc[index, "grids"] = len(df_clear[df_mask])
+
+    return px.bar(df_different_count, y="count", x="grids")
