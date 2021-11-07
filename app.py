@@ -23,11 +23,13 @@ def display_click_data(custom_data):
             html.P("time_stopped: {}".format(df_result['time_stopped'].tolist()[0])),
             html.P("vehicle_id: {}".format(df_result['vehicle_id'].tolist()[0]))
         ]
+
     return [
         html.P("perc: {}".format("")),
         html.P("time_stopped: {}".format("")),
         html.P("vehicle_id: {}".format(""))
     ]
+
 
 app.layout = html.Div([
     html.H2("Data Mobility:"),

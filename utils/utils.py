@@ -9,8 +9,10 @@ def get_dataframe():
     file = glob.glob("data/dataset_motos.geojson")
     with open(file[0]) as json_data:
         geojson_read = json.load(json_data)
+
     properties_list = [value["properties"] for value in geojson_read["features"]]
     df_properties = pd.DataFrame(properties_list)
+
     return df_properties, geojson_read
 
 
