@@ -2,7 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 
-from display.graphs import display_choropleth
+from display.graphs import display_choropleth, display_historygram
 from utils.utils import get_dataframe, generate_table
 from dash.dependencies import Input, Output
 
@@ -37,10 +37,10 @@ app.layout = html.Div([
     ),
     html.Div(id="click_result"),
     generate_table(df),
-    # dcc.Graph(
-    #     id='histogram-mobility',
-    #     figure=display_historygram(df)
-    # )
+    dcc.Graph(
+        id='histogram-mobility',
+        figure=display_historygram(df)
+    )
 ])
 
 if __name__ == '__main__':
