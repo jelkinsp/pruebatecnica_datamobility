@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 from display.graphs import display_choropleth
-from utils.utils import get_dataframe
+from utils.utils import get_dataframe, generate_table
 from dash.dependencies import Input, Output
 
 app = dash.Dash(__name__)
@@ -36,7 +36,7 @@ app.layout = html.Div([
         figure=display_choropleth(df, geojson)
     ),
     html.Div(id="click_result"),
-    # generate_table(df),
+    generate_table(df),
     # dcc.Graph(
     #     id='histogram-mobility',
     #     figure=display_historygram(df)
